@@ -1,19 +1,31 @@
-#ifndef backlevel_H
-#define backlevel_H
-#include <SDL/SDL.h>
-#include <SDL/SDL_image.h>
+#ifndef back_H_INCLUDED
+#define back_H_INCLUDED
+
 #include <stdio.h>
 #include <stdlib.h>
-#define SCREEN_W 1400
-#define SCREEN_H 600
-typedef struct {
-	SDL_Rect pos1,pos2;
-        SDL_Surface *img;
-}Image;
+#include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
+#include <SDL/SDL_ttf.h>
+#include <SDL/SDL_mixer.h>
+
+typedef struct background
+	{
+        SDL_Surface *image;
+				SDL_Surface * mask;
+        SDL_Rect camera;
+        Mix_Music *music;
+    }background;
+
+void initBack(background * b);
+void aficherBack(background b, SDL_Surface * screen);
+void scrolling (background * b, int direction, int pasAvancement );
+
+/*SDL_Color GetPixel(SDL_Surface *pSurface , int x,int y);
+int collision_parfaite_right(SDL_Surface *mask , SDL_Rect posjoueur,SDL_Rect camera );
+int collision_parfaite_left(SDL_Surface *mask , SDL_Rect posjoueur ,SDL_Rect camera);
+int collision_parfaite_up(SDL_Surface *mask , SDL_Rect posjoueur ,SDL_Rect camera);
+int collision_parfaite_down(SDL_Surface *mask , SDL_Rect posjoueur ,SDL_Rect camera);*/
 
 
-void initBacklevel(Image *Backg);
 
-void afficher(Image Backg,SDL_Surface *screen);
-
-#endif
+#endif // DS_H_INCLUDED
